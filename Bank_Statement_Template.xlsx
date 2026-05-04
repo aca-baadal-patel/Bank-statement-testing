@@ -1,0 +1,55 @@
+# Bank Statement Template
+
+## SHEET 1 - SUMMARY/DASHBOARD
+
+### BORROWER/LOAN INFORMATION
+| Today’s Date | Completed By | Borrower Name | Employee Name | Account Number | Loan Number | Account Type |
+|--------------|--------------|---------------|----------------|----------------|-------------|--------------|
+
+### LARGE DEPOSIT FLAG
+| Average Deposit | Percentage Amount | Large Deposit Threshold |
+|-----------------|--------------------|--------------------------|
+
+### TOTALS
+| Total Deposits | =SUMIF(Transactions!E:E,"Include",Transactions!C:C) |
+|----------------|------------------------|
+| Total Included Deposits | =SUMIF(Transactions!E:E,"Include",Transactions!C:C) |
+|----------------------------|------------------------|
+| Total Excluded Deposits | =SUMIF(Transactions!E:E,"Exclude",Transactions!C:C) |
+|-------------------------|-------------------|
+| Total Debits | =SUMIF(Debits!D:D,"Include",Debits!C:C) |
+|-------------------|------------------|
+| Total Included Debits | =SUMIF(Debits!D:D,"Include",Debits!C:C) |
+|----------------------------|----------------|
+| Total Excluded Debits | =SUMIF(Debits!D:D,"Exclude",Debits!C:C) |
+|----------------------------|-------------------|
+| Qualifying Income Avg | =AVERAGEIF(Transactions!D:D,"PAYROLL",Transactions!C:C) |
+|------------------------|--------------------------|
+
+### BREAKDOWN BY TRANSACTION TYPE
+| Transaction Type | Included Total | Excluded Total | Count |
+|------------------|----------------|----------------|-------|
+| ATM_DEPOSIT      | =SUMIFS(Transactions!C:C,Transactions!D:D,"ATM_DEPOSIT",Transactions!E:E,"Include") | =SUMIFS(Transactions!C:C,Transactions!D:D,"ATM_DEPOSIT",Transactions!E:E,"Exclude") | =COUNTIFS(Transactions!D:D,"ATM_DEPOSIT",Transactions!E:E,"Include") |
+| PAYROLL          | =SUMIFS(Transactions!C:C,Transactions!D:D,"PAYROLL",Transactions!E:E,"Include") | =SUMIFS(Transactions!C:C,Transactions!D:D,"PAYROLL",Transactions!E:E,"Exclude") | =COUNTIFS(Transactions!D:D,"PAYROLL",Transactions!E:E,"Include") |
+| ZELLE            | =SUMIFS(Transactions!C:C,Transactions!D:D,"ZELLE",Transactions!E:E,"Include") | =SUMIFS(Transactions!C:C,Transactions!D:D,"ZELLE",Transactions!E:E,"Exclude") | =COUNTIFS(Transactions!D:D,"ZELLE",Transactions!E:E,"Include") |
+| OTHER            | =SUMIFS(Transactions!C:C,Transactions!D:D,"OTHER",Transactions!E:E,"Include") | =SUMIFS(Transactions!C:C,Transactions!D:D,"OTHER",Transactions!E:E,"Exclude") | =COUNTIFS(Transactions!D:D,"OTHER",Transactions!E:E,"Include") |
+| TRANSFER         | =SUMIFS(Transactions!C:C,Transactions!D:D,"TRANSFER",Transactions!E:E,"Include") | =SUMIFS(Transactions!C:C,Transactions!D:D,"TRANSFER",Transactions!E:E,"Exclude") | =COUNTIFS(Transactions!D:D,"TRANSFER",Transactions!E:E,"Include") |
+| DIRECT_DEPOSIT    | =SUMIFS(Transactions!C:C,Transactions!D:D,"DIRECT_DEPOSIT",Transactions!E:E,"Include") | =SUMIFS(Transactions!C:C,Transactions!D:D,"DIRECT_DEPOSIT",Transactions!E:E,"Exclude") | =COUNTIFS(Transactions!D:D,"DIRECT_DEPOSIT",Transactions!E:E,"Include") |
+| REFUNDS           | =SUMIFS(Transactions!C:C,Transactions!D:D,"REFUNDS",Transactions!E:E,"Include") | =SUMIFS(Transactions!C:C,Transactions!D:D,"REFUNDS",Transactions!E:E,"Exclude") | =COUNTIFS(Transactions!D:D,"REFUNDS",Transactions!E:E,"Include") |
+| UNEMPLOYMENT     | =SUMIFS(Transactions!C:C,Transactions!D:D,"UNEMPLOYMENT",Transactions!E:E,"Include") | =SUMIFS(Transactions!C:C,Transactions!D:D,"UNEMPLOYMENT",Transactions!E:E,"Exclude") | =COUNTIFS(Transactions!D:D,"UNEMPLOYMENT",Transactions!E:E,"Include") |
+| LOAN_DEPOSITS    | =SUMIFS(Transactions!C:C,Transactions!D:D,"LOAN_DEPOSITS",Transactions!E:E,"Include") | =SUMIFS(Transactions!C:C,Transactions!D:D,"LOAN_DEPOSITS",Transactions!E:E,"Exclude") | =COUNTIFS(Transactions!D:D,"LOAN_DEPOSITS",Transactions!E:E,"Include") |
+| TAX_RETURN       | =SUMIFS(Transactions!C:C,Transactions!D:D,"TAX_RETURN",Transactions!E:E,"Include") | =SUMIFS(Transactions!C:C,Transactions!D:D,"TAX_RETURN",Transactions!E:E,"Exclude") | =COUNTIFS(Transactions!D:D,"TAX_RETURN",Transactions!E:E,"Include") |
+
+### STATEMENT OVERVIEW
+| Begin Date | End Date | Included Total | Beginning Balance | Ending Balance | Total NSF Count |
+|------------|----------|----------------|-------------------|----------------|------------------|
+
+## SHEET 2 - TRANSACTIONS
+
+| Date       | Transaction Description | Amount | Deposit Category | Include/Exclude | Large Deposit Flag |
+|------------|-------------------------|--------|------------------|------------------|--------------------|
+
+## SHEET 3 - DEBITS
+
+| Date       | Transaction Description | Amount | Include/Exclude |
+|------------|-------------------------|--------|------------------|
